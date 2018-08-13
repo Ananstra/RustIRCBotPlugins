@@ -11,7 +11,6 @@ lazy_static! {
     static ref PART_REGEX: Regex = Regex::new(r"!part (.*)").unwrap();
 }
 
-
 #[no_mangle]
 pub fn handle_message(client: &IrcClient, message: &Message) {
     if let Command::PRIVMSG(ref source_chan, ref msg) = message.command {
@@ -54,4 +53,14 @@ pub fn handle_message(client: &IrcClient, message: &Message) {
             }
         }
     }
+}
+
+#[no_mangle]
+pub fn initialize(_client: &IrcClient) {
+    println!("Join/Part plugin initialized.");
+}
+
+#[no_mangle]
+pub fn finalize() {
+    println!("Join/Part plugin finalized.");
 }
