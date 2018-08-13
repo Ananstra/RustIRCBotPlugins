@@ -64,3 +64,9 @@ pub fn initialize(_client: &IrcClient) {
 pub fn finalize() {
     println!("Join/Part plugin finalized.");
 }
+
+
+#[no_mangle]
+pub fn print_description(client: &IrcClient, channel: &str) {
+    client.send_privmsg(channel, "joinpart: Handles joining and leaving channels at runtime.");
+}
